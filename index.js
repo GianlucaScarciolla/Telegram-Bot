@@ -12,7 +12,7 @@ jsonfile.readFile(file, function(err, obj) {
 
   bot.onText(/\/cmd/, function (msg, match) {
     var fromId = msg.from.id;
-    var resp = "/echo : Replies with the same answer\n";
+    var resp = "/echo [msg] : Replies with the same answer\n/clr [int] : Clears chat by X amount\n";
     bot.sendMessage(fromId, resp);
   });
 
@@ -26,13 +26,20 @@ jsonfile.readFile(file, function(err, obj) {
   // Matches /echo [whatever]
   bot.onText(/\/clr (.+)/, function (msg, match) {
     var chatId = msg.chat.id;
-    match = parseInt(match);
-    var resp = ".";
-    for (var i = 0; i < match; i++) {
-      resp+="\n"
+    if (match[1]<=1000 && match[1]>0) {
+      var resp = ".";
+      for (var i = 0; i < match[1]; i++) {
+        resp+="\n";
+      }
+      resp+="."
+    } else {
+      resp = "Enter a number between 1-1000 ye <b>Nignog!</b>";
     }
-    resp+="."
-    bot.sendMessage(chatId, resp);
+    bot.sendMessage(chatId, resp, {"parse_mode":"HTML"});
+  });
+
+  bot.onText(/\/kill/, function (msg, match) {
+    //process.exit()
   });
 
 
