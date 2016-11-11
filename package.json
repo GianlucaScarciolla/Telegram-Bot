@@ -1,0 +1,25 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.24.0",
+    "jsonfile": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Hoi15A@github.com/Hoi15A/Telegram-Bot.git"
+  },
+  "author": "Austin Albrecht",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Hoi15A/Telegram-Bot/issues"
+  },
+  "homepage": "https://github.com/Hoi15A/Telegram-Bot#readme"
+}
