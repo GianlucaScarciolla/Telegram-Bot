@@ -56,6 +56,20 @@ jsonfile.readFile(file, function(err, obj) {
 
   });
 
+  bot.onText(/\/insert (.+)/, function (msg, match) {
+    var chatId = msg.chat.id;
+
+    var sql = "INSERT INTO test (todotxt) VALUES (?)";
+
+    connection.execute(sql, [match[1]], function (err, results, fields) {
+
+      var output = sql + "\n" + results + "\n" + fields;
+
+      bot.sendMessage(chatId, output);
+    });
+
+  });
+
   bot.onText(/\/kill/, function (msg, match) {
     //process.exit()
   });
