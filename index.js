@@ -2,9 +2,7 @@ var TelegramBot = require('node-telegram-bot-api');
 var mysql = require('mysql2');
 var jsonfile = require('jsonfile');
 
-var file = 'auth.json';
-
-jsonfile.readFile(file, function(err, obj) {
+jsonfile.readFile('auth.json', function(err, obj) {
 	var token = obj.token;
 	var connection = mysql.createConnection({
 		host: obj.db_host,
@@ -52,27 +50,7 @@ jsonfile.readFile(file, function(err, obj) {
 	});
 
 	/**
-	 * Outputs `test` table contents.
-	 * TODO: remove this
-	 */
-	bot.onText(/\/ripDB/, function (msg, match) {
-		var tg_id = msg.chat.id;
-		var resp = "";
-
-		connection.execute('SELECT * FROM todo', function (err, results, fields) {
-
-			for (var i = 0; i < results.length; i++) {
-				console.log(results[i].todotxt);
-				resp += results[i].todotxt;
-			}
-
-			bot.sendMessage(tg_id, resp);
-		});
-
-	});
-
-	/**
-	 * 
+	 * Add to the Todolist of the current chat
 	 */
 	bot.onText(/\/todoadd (.+)/, function (msg, match) {
 		var tg_id = msg.chat.id;
@@ -81,38 +59,30 @@ jsonfile.readFile(file, function(err, obj) {
 		// Save chat ID if it doesn't already exist
 		var sql = "INSERT IGNORE INTO chat (tg_id) VALUES (?)";
 		connection.execute(sql, [tg_id], function (err, results, fields) {
-			bot.sendMessage(tg_id, "Added new chat " + tg_id + " " + err);
+			// Added new chat
 		});
 
-		// Fetch chat.id
-		/*
-		var sql = "SELECT id FROM chat WHERE tg_id=?";
-		connection.execute(sql, [tg_id], function (err, results, fields) {
-			chat_id = results[0].id;
-			bot.sendMessage(tg_id, "Found chat " + chat_id + " " + err);
-		});
-		*/
-	
-
-		// Insert todo
-		var sql = "INSERT INTO todo (chat_id, value) VALUES ((SELECT id FROM chat WHERE tg_id='"+tg_id+"'),?)";
+		// Insert todo message
+		var sql =
+		"INSERT INTO todo (chat_id, value) VALUES ((SELECT id FROM chat WHERE tg_id='"+tg_id+"'),?)";
 		connection.execute(sql, [match[1]], function (err, results, fields) {
-
-			var output = tg_id + " " + chat_id + " err: " + err;
-			bot.sendMessage(tg_id, output);
+			bot.sendMessage(tg_id, "Added `" + match[1] + "` to the todolist!");
 		});
-
 	});
 
 	/**
-	 * TODO: add todolist
+	 * View todolist
 	 */
+	bot.onText(/\/todolist/, function (msg, match) {
+		var tg_id = msg.chat.id;
 
-	/**
-	 * TODO: remove this
-	 */
-	bot.onText(/\/kill/, function (msg, match) {
-		//process.exit()
+		var sql = "SELECT value FROM todo INNER JOIN chat ON todo.chat_id=chat.id WHERE chat.tg_id=?";
+		connection.execute(sql, [tg_id], function (err, results, fields) {
+			resp = "Your todolist entries:\n\n";
+			for(var i = 0; i < results.length; i++) {
+				resp += " - " + results[i].value + "\n";
+			}
+			bot.sendMessage(tg_id, resp);
+		});
 	});
-
 });
