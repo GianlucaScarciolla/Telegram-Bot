@@ -4,7 +4,8 @@ var jsonfile = require('jsonfile');
 
 jsonfile.readFile('auth.json', function(err, obj) {
 	var token = obj.token;
-	var connection = mysql.createConnection({
+	var connection = mysql.createPool({
+    connectionLimit : 25,
 		host: obj.db_host,
 		user: obj.db_user,
 		password: obj.db_pass,
@@ -63,7 +64,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		});
 
 		// Insert todo message
-		var sql =
+		sql =
 		"INSERT INTO todo (chat_id, value) VALUES ((SELECT id FROM chat WHERE tg_id='"+tg_id+"'),?)";
 		connection.execute(sql, [match[1]], function (err, results, fields) {
 			bot.sendMessage(tg_id, "Added `" + match[1] + "` to the todolist!");
@@ -80,9 +81,50 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		connection.execute(sql, [tg_id], function (err, results, fields) {
 			resp = "Your todolist entries:\n\n";
 			for(var i = 0; i < results.length; i++) {
-				resp += " - " + results[i].value + "\n";
+				resp += i + ": " + results[i].value + "\n";
 			}
 			bot.sendMessage(tg_id, resp);
 		});
+	});
+
+  /**
+	 * k
+	 */
+  bot.onText(/\/k/, function (msg, match) {
+		var chatId = msg.chat.id;
+    console.log(match.input);
+    switch (match.input) {
+      case "/k":
+        bot.sendVoice(chatId, "audio-files/k-default.ogg");
+        break;
+      case "/k rip":
+        bot.sendVoice(chatId, "audio-files/k-rip.ogg");
+        break;
+      case "/k deep":
+        bot.sendVoice(chatId, "audio-files/k-deep.ogg");
+        break;
+      case "/k echo":
+        bot.sendVoice(chatId, "audio-files/k-echo.ogg");
+        break;
+      case "/k wtf":
+        bot.sendVoice(chatId, "audio-files/wtf-m8.ogg");
+        break;
+      case "/k jewtut":
+        bot.sendVoice(chatId, "audio-files/jewtorial.ogg");
+        break;
+      case "/k mc":
+        bot.sendVoice(chatId, "audio-files/daniel-mc-default.ogg");
+        break;
+      case "/k mcrip":
+        bot.sendVoice(chatId, "audio-files/daniel-mc-rip.ogg");
+        break;
+      case "/k ?":
+      case "/k help":
+        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip</i>", {"parse_mode":"HTML"});
+        break;
+      default:
+        bot.sendMessage(chatId, "m8, only send a fuckin param if u kno shit '<i>/k help</i>'", {"parse_mode":"HTML"});
+    }
+
 	});
 });
