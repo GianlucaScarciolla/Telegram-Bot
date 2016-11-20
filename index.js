@@ -118,9 +118,21 @@ jsonfile.readFile('auth.json', function(err, obj) {
       case "/k mcrip":
         bot.sendVoice(chatId, "audio-files/daniel-mc-rip.ogg");
         break;
+      case "/k fuckoff":
+        bot.sendVoice(chatId, "audio-files/fuckoff.ogg");
+        break;
+      case "/k fuckoffrip":
+        bot.sendVoice(chatId, "audio-files/fuckoff_rip.ogg");
+        break;
+      case "/k mate":
+        bot.sendVoice(chatId, "audio-files/fuckoffmate.ogg");
+        break;
+      case "/k materip":
+        bot.sendVoice(chatId, "audio-files/fuckoffmate_rip.ogg");
+        break;
       case "/k ?":
       case "/k help":
-        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip</i>", {"parse_mode":"HTML"});
+        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip</i>", {"parse_mode":"HTML"});
         break;
       default:
         bot.sendMessage(chatId, "m8, only send a fuckin param if u kno shit '<i>/k help</i>'", {"parse_mode":"HTML"});
