@@ -93,76 +93,95 @@ jsonfile.readFile('auth.json', function(err, obj) {
   bot.onText(/\/k/, function (msg, match) {
 		var chatId = msg.chat.id;
     //console.log(match.input);
-    switch (match.input) {
+		selection = match.input.toLowerCase();
+    switch (selection) {
       case "/k":
-        bot.sendVoice(chatId, "audio-files/k-default.ogg");
+        bot.sendAudio(chatId, "audio-files/k-default.mp3");
         break;
       case "/k rip":
-        bot.sendVoice(chatId, "audio-files/k-rip.ogg");
+        bot.sendAudio(chatId, "audio-files/k-rip.mp3");
         break;
       case "/k deep":
-        bot.sendVoice(chatId, "audio-files/k-deep.ogg");
+        bot.sendAudio(chatId, "audio-files/k-deep.mp3");
         break;
       case "/k echo":
-        bot.sendVoice(chatId, "audio-files/k-echo.ogg");
+        bot.sendAudio(chatId, "audio-files/k-echo.mp3");
         break;
       case "/k wtf":
-        bot.sendVoice(chatId, "audio-files/wtf-m8.ogg");
+        bot.sendAudio(chatId, "audio-files/wtf-m8.mp3");
         break;
       case "/k jewtut":
-        bot.sendVoice(chatId, "audio-files/jewtorial.ogg");
+        bot.sendAudio(chatId, "audio-files/jewtorial.mp3");
         break;
       case "/k mc":
-        bot.sendVoice(chatId, "audio-files/daniel-mc-default.ogg");
+        bot.sendAudio(chatId, "audio-files/daniel-mc-default.mp3");
         break;
       case "/k mcrip":
-        bot.sendVoice(chatId, "audio-files/daniel-mc-rip.ogg");
+        bot.sendAudio(chatId, "audio-files/daniel-mc-rip.mp3");
         break;
       case "/k fuckoff":
-        bot.sendVoice(chatId, "audio-files/fuckoff.ogg");
+        bot.sendAudio(chatId, "audio-files/fuckoff.mp3");
         break;
       case "/k fuckoffrip":
-        bot.sendVoice(chatId, "audio-files/fuckoff_rip.ogg");
+        bot.sendAudio(chatId, "audio-files/fuckoff_rip.mp3");
         break;
       case "/k mate":
-        bot.sendVoice(chatId, "audio-files/fuckoffmate.ogg");
+        bot.sendAudio(chatId, "audio-files/fuckoffmate.mp3");
         break;
       case "/k materip":
-        bot.sendVoice(chatId, "audio-files/fuckoffmate_rip.ogg");
+        bot.sendAudio(chatId, "audio-files/fuckoffmate_rip.mp3");
         break;
       case "/k lel":
-        bot.sendVoice(chatId, "audio-files/lel.ogg");
+        bot.sendAudio(chatId, "audio-files/lel.mp3");
         break;
       case "/k lelrip":
-        bot.sendVoice(chatId, "audio-files/lelrip.ogg");
+        bot.sendAudio(chatId, "audio-files/lelrip.mp3");
         break;
       case "/k kek":
-        bot.sendVoice(chatId, "audio-files/kek.ogg");
+        bot.sendAudio(chatId, "audio-files/kek.mp3");
         break;
       case "/k kekrip":
-        bot.sendVoice(chatId, "audio-files/kekrip.ogg");
+        bot.sendAudio(chatId, "audio-files/kekrip.mp3");
         break;
       case "/k fgt":
-        bot.sendVoice(chatId, "audio-files/fgt.ogg");
+        bot.sendAudio(chatId, "audio-files/fgt.mp3");
         break;
       case "/k fgtrip":
-        bot.sendVoice(chatId, "audio-files/fgtrip.ogg");
+        bot.sendAudio(chatId, "audio-files/fgtrip.mp3");
         break;
       case "/k topkek":
-        bot.sendVoice(chatId, "audio-files/topkek.ogg");
+        bot.sendAudio(chatId, "audio-files/topkek.mp3");
         break;
       case "/k topkekrip":
-        bot.sendVoice(chatId, "audio-files/topkekrip.ogg");
+        bot.sendAudio(chatId, "audio-files/topkekrip.mp3");
         break;
       case "/k srsly":
-        bot.sendVoice(chatId, "audio-files/srsly.ogg");
+        bot.sendAudio(chatId, "audio-files/srsly.mp3");
         break;
       case "/k srslyrip":
-        bot.sendVoice(chatId, "audio-files/srslyrip.ogg");
+        bot.sendAudio(chatId, "audio-files/srslyrip.mp3");
         break;
+			case "/k gentoo":
+        bot.sendAudio(chatId, "audio-files/gentoo.mp3");
+        break;
+			case "/k installgentoo":
+        bot.sendAudio(chatId, "audio-files/installgentoo.mp3");
+        break;
+			case "/k nignog":
+				bot.sendAudio(chatId, "audio-files/nignog.mp3");
+				break;
+			case "/k node":
+				bot.sendAudio(chatId, "audio-files/nodejs.mp3");
+				break;
+			case "/k pleb":
+				bot.sendAudio(chatId, "audio-files/pleb.mp3");
+				break;
+			case "/k xd":
+				bot.sendAudio(chatId, "audio-files/xd.mp3");
+				break;
       case "/k ?":
       case "/k help":
-        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip</i>", {"parse_mode":"HTML"});
+        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip, gentoo, installgentoo, nignog, node, pleb, xd</i>", {"parse_mode":"HTML"});
         break;
       default:
         bot.sendMessage(chatId, "m8, only send a fuckin param if u kno shit '<i>/k help</i>'", {"parse_mode":"HTML"});
