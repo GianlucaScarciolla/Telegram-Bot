@@ -70,6 +70,8 @@ jsonfile.readFile('auth.json', function(err, obj) {
 			connection.execute(sql, [match[1]], function (err, results, fields) {
 				bot.sendMessage(tg_id, "Added `" + match[1] + "` to the todolist!");
 			});
+		} else {
+			bot.sendMessage(tg_id, "Fuck off you are not on the whitelist!");
 		}
 
 	});
