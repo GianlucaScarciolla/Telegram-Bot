@@ -86,7 +86,24 @@ jsonfile.readFile('auth.json', function(err, obj) {
 			bot.sendMessage(tg_id, resp);
 		});
 	});
+	// test for text detection
+	bot.on('message', function (msg, match) {
+		var chatId = msg.chat.id;
+		//console.log(match.input);
+		selection = match.input.toLowerCase();
+		switch (selection) {
+			case "lel":
+				bot.sendAudio(chatId, "audio-files/lel.mp3");
+				break;
+			case "nigger":
+				bot.sendAudio(chatId, "audio-files/notracist.mp3");
+				break;
+			case "kek":
+				bot.sendAudio(chatId, "audio-files/kek.mp3");
+				break;
+		}
 
+	});
   /**
 	 * k
 	 */
@@ -179,9 +196,24 @@ jsonfile.readFile('auth.json', function(err, obj) {
 			case "/k xd":
 				bot.sendAudio(chatId, "audio-files/xd.mp3");
 				break;
+			case "/k moon":
+				bot.sendAudio(chatId, "audio-files/moon.mp3");
+				break;
+			case "/k noom":
+				bot.sendAudio(chatId, "audio-files/noom.mp3");
+				break;
+			case "/k notracist":
+				bot.sendAudio(chatId, "audio-files/notracist.mp3");
+				break;
+			case "/k notracistrip":
+				bot.sendAudio(chatId, "audio-files/notracistrip.mp3");
+				break;
+			case "/k notracistdeep":
+				bot.sendAudio(chatId, "audio-files/notracist-deep.mp3");
+				break;
       case "/k ?":
       case "/k help":
-        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip, gentoo, installgentoo, nignog, node, pleb, xd</i>", {"parse_mode":"HTML"});
+        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip, gentoo, installgentoo, nignog, node, pleb, xd, moon, noom, notracist, notracistrip, notracistdeep</i>", {"parse_mode":"HTML"});
         break;
       default:
         bot.sendMessage(chatId, "m8, only send a fuckin param if u kno shit '<i>/k help</i>'", {"parse_mode":"HTML"});
