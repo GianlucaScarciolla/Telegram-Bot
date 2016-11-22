@@ -56,19 +56,22 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	bot.onText(/\/todoadd (.+)/, function (msg, match) {
 		var tg_id = msg.chat.id;
 		var chat_id = 0;
+		//whitelist
+		if (tg_id == "-158242806" || tg_id == "173399457" || tg_id == "-1001041246978") {
+			// Save chat ID if it doesn't already exist
+			var sql = "INSERT IGNORE INTO chat (tg_id) VALUES (?)";
+			connection.execute(sql, [tg_id], function (err, results, fields) {
+				// Added new chat
+			});
 
-		// Save chat ID if it doesn't already exist
-		var sql = "INSERT IGNORE INTO chat (tg_id) VALUES (?)";
-		connection.execute(sql, [tg_id], function (err, results, fields) {
-			// Added new chat
-		});
+			// Insert todo message
+			sql =
+			"INSERT INTO todo (chat_id, value) VALUES ((SELECT id FROM chat WHERE tg_id='"+tg_id+"'),?)";
+			connection.execute(sql, [match[1]], function (err, results, fields) {
+				bot.sendMessage(tg_id, "Added `" + match[1] + "` to the todolist!");
+			});
+		}
 
-		// Insert todo message
-		sql =
-		"INSERT INTO todo (chat_id, value) VALUES ((SELECT id FROM chat WHERE tg_id='"+tg_id+"'),?)";
-		connection.execute(sql, [match[1]], function (err, results, fields) {
-			bot.sendMessage(tg_id, "Added `" + match[1] + "` to the todolist!");
-		});
 	});
 
 	/**
