@@ -130,9 +130,39 @@ jsonfile.readFile('auth.json', function(err, obj) {
       case "/k materip":
         bot.sendVoice(chatId, "audio-files/fuckoffmate_rip.ogg");
         break;
+      case "/k lel":
+        bot.sendVoice(chatId, "audio-files/lel.ogg");
+        break;
+      case "/k lelrip":
+        bot.sendVoice(chatId, "audio-files/lelrip.ogg");
+        break;
+      case "/k kek":
+        bot.sendVoice(chatId, "audio-files/kek.ogg");
+        break;
+      case "/k kekrip":
+        bot.sendVoice(chatId, "audio-files/kekrip.ogg");
+        break;
+      case "/k fgt":
+        bot.sendVoice(chatId, "audio-files/fgt.ogg");
+        break;
+      case "/k fgtrip":
+        bot.sendVoice(chatId, "audio-files/fgtrip.ogg");
+        break;
+      case "/k topkek":
+        bot.sendVoice(chatId, "audio-files/topkek.ogg");
+        break;
+      case "/k topkekrip":
+        bot.sendVoice(chatId, "audio-files/topkekrip.ogg");
+        break;
+      case "/k srsly":
+        bot.sendVoice(chatId, "audio-files/srsly.ogg");
+        break;
+      case "/k srslyrip":
+        bot.sendVoice(chatId, "audio-files/srslyrip.ogg");
+        break;
       case "/k ?":
       case "/k help":
-        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip</i>", {"parse_mode":"HTML"});
+        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip</i>", {"parse_mode":"HTML"});
         break;
       default:
         bot.sendMessage(chatId, "m8, only send a fuckin param if u kno shit '<i>/k help</i>'", {"parse_mode":"HTML"});
