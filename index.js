@@ -115,7 +115,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		selection = match.input.toLowerCase();
     switch (selection) {
       case "/k":
-        bot.sendAudio(chatId, "audio-files/k-default.mp3");
+        bot.sendVoice(chatId, "audio-files/k-default.mp3");
         break;
       case "/k rip":
         bot.sendAudio(chatId, "audio-files/k-rip.mp3");
