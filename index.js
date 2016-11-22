@@ -92,7 +92,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	 */
   bot.onText(/\/k/, function (msg, match) {
 		var chatId = msg.chat.id;
-    console.log(match.input);
+    //console.log(match.input);
     switch (match.input) {
       case "/k":
         bot.sendVoice(chatId, "audio-files/k-default.ogg");
