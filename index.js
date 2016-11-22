@@ -86,7 +86,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 			bot.sendMessage(tg_id, resp);
 		});
 	});
-	// test for text detection
+	/* test for text detection | IT FAILED BADLY
 	bot.on('message', function (msg, match) {
 		var chatId = msg.chat.id;
 		//console.log(match.input);
@@ -103,7 +103,9 @@ jsonfile.readFile('auth.json', function(err, obj) {
 				break;
 		}
 
-	});
+	});*/
+
+
   /**
 	 * k
 	 */
