@@ -1,6 +1,7 @@
 var TelegramBot = require('node-telegram-bot-api');
 var mysql = require('mysql2');
 var jsonfile = require('jsonfile');
+var dns = require('dns');
 
 jsonfile.readFile('auth.json', function(err, obj) {
 	var token = obj.token;
@@ -44,7 +45,6 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	bot.onText(/\/giveip (.+)/, function (msg, match) {
 		var chatId = msg.chat.id;
 		var url = match[1];
-		var dns = require('dns');
 		dns.resolve4(url, function (err, addresses) {
 		bot.sendMessage(chatId, addresses);
 		});
