@@ -46,7 +46,9 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var chatId = msg.chat.id;
 		var url = match[1];
 		dns.resolve4(url, function (err, addresses) {
-			bot.sendMessage(chatId, addresses[0]);
+			if (Array.isArray(addresses)) {
+				bot.sendMessage(chatId, addresses[0]);
+			}
 		});
 	});
 
