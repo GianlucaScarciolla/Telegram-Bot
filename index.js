@@ -37,6 +37,18 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var resp = match[1];
 		bot.sendMessage(chatId, resp);
 	});
+	
+	/**
+	 * Outputs IP Adress from URL //Luu
+	 */
+	bot.onText(/\/giveip (.+)/, function (msg, match) {
+		var chatId = msg.chat.id;
+		var url = match[1];
+		var dns = require('dns');
+		dns.resolve4(url, function (err, addresses) {
+		bot.sendMessage(chatId, addresses);
+		});
+	});
 
 	/**
 	 * `clears` screen with N * newlines
