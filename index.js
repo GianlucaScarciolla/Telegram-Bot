@@ -17,6 +17,12 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	// Setup polling way
 	var bot = new TelegramBot(token, {polling: true});
 
+	bot.onText(/\/chatid/, function (msg, match) {
+		var fromId = msg.from.id;
+		var resp = "This is your chat ID: " + fromId;
+		bot.sendMessage(fromId, resp);
+	});
+
 	bot.onText(/\/cmd/, function (msg, match) {
 		var fromId = msg.from.id;
 		var resp = "/echo [msg] : Replies with the same answer\n/clr [int] : Clears chat by X amount\n";
