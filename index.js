@@ -38,7 +38,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var resp = match[1];
 		bot.sendMessage(chatId, resp);
 	});
-	
+
 	/**
 	 * Outputs IP Adress from URL //Luu
 	 */
@@ -46,7 +46,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var chatId = msg.chat.id;
 		var url = match[1];
 		dns.resolve4(url, function (err, addresses) {
-		bot.sendMessage(chatId, addresses);
+			bot.sendMessage(chatId, addresses[0]);
 		});
 	});
 
@@ -109,24 +109,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 			bot.sendMessage(tg_id, resp);
 		});
 	});
-	/* test for text detection | IT FAILED BADLY
-	bot.on('message', function (msg, match) {
-		var chatId = msg.chat.id;
-		//console.log(match.input);
-		selection = match.input.toLowerCase();
-		switch (selection) {
-			case "lel":
-				bot.sendAudio(chatId, "audio-files/lel.mp3");
-				break;
-			case "nigger":
-				bot.sendAudio(chatId, "audio-files/notracist.mp3");
-				break;
-			case "kek":
-				bot.sendAudio(chatId, "audio-files/kek.mp3");
-				break;
-		}
 
-	});*/
 
 
   /**
