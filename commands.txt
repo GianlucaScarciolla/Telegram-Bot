@@ -1,0 +1,6 @@
+chatid - Gives you your current chat id
+echo - Outputs what you said to the bot
+todolist - Shows Todolist
+todoadd - Adds to Todolist
+clr - Clears chat by <int> lines
+k - K. use /k ? for more info

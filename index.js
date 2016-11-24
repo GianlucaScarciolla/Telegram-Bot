@@ -18,7 +18,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	var bot = new TelegramBot(token, {polling: true});
 
 	bot.onText(/\/chatid/, function (msg, match) {
-		var fromId = msg.from.id;
+		var fromId = msg.chat.id;
 		var resp = "This is your chat ID: " + fromId;
 		bot.sendMessage(fromId, resp);
 	});
