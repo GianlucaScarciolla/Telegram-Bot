@@ -63,7 +63,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var tg_id = msg.chat.id;
 		var chat_id = 0;
 		//whitelist
-		if (tg_id == "-158242806" || tg_id == "173399457" || tg_id == "-1001041246978") {
+		if (tg_id == "-158242806" || tg_id == "173399457" || tg_id == "-1001041246978" || tg_id == "271373170") {
 			// Save chat ID if it doesn't already exist
 			var sql = "INSERT IGNORE INTO chat (tg_id) VALUES (?)";
 			connection.execute(sql, [tg_id], function (err, results, fields) {
