@@ -1,6 +1,7 @@
 var TelegramBot = require('node-telegram-bot-api');
 var mysql = require('mysql2');
 var jsonfile = require('jsonfile');
+var dns = require('dns');
 
 jsonfile.readFile('auth.json', function(err, obj) {
 	var token = obj.token;
@@ -36,6 +37,17 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var chatId = msg.chat.id;
 		var resp = match[1];
 		bot.sendMessage(chatId, resp);
+	});
+	
+	/**
+	 * Outputs IP Adress from URL //Luu
+	 */
+	bot.onText(/\/giveip (.+)/, function (msg, match) {
+		var chatId = msg.chat.id;
+		var url = match[1];
+		dns.resolve4(url, function (err, addresses) {
+		bot.sendMessage(chatId, addresses);
+		});
 	});
 
 	/**
