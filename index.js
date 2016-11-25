@@ -97,12 +97,36 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	});
 
 	/**
+	 * Delete from list
+	 */
+	bot.onText(/\/tododelete (.+)/, function (msg, match) {
+		var list_id = parseInt(match[1]);
+		if(!isNaN(list_id)) {
+			var tg_id = msg.chat.id;
+			var sql = "SELECT value, id FROM todo INNER JOIN chat ON todo.chat_id=chat.id WHERE chat.tg_id=?";
+
+			connection.execute(sql, [tg_id], function (err, results, fields) {
+				for(var i = 0; i < results.length; i++) {
+					var current = parseInt(i);
+					if(current == list_id) {
+						// Delete the element
+						var current_id = results[i].id;
+						var del_sql = "DELETE FROM todo WHERE id='" + current_id + "'";
+						connection.execute(del_sql, function (err, results, fields) {});
+					}
+				}
+				bot.sendMessage(tg_id, 'Deleted entry #' + list_id);
+			});
+		}
+	});
+
+	/**
 	 * View todolist
 	 */
 	bot.onText(/\/todolist/, function (msg, match) {
 		var tg_id = msg.chat.id;
-
 		var sql = "SELECT value FROM todo INNER JOIN chat ON todo.chat_id=chat.id WHERE chat.tg_id=?";
+
 		connection.execute(sql, [tg_id], function (err, results, fields) {
 			resp = "Your todolist entries:\n\n";
 			for(var i = 0; i < results.length; i++) {
