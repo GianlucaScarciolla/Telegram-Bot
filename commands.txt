@@ -1,6 +1,9 @@
 chatid - Gives you your current chat id
 echo - Outputs what you said to the bot
-todolist - Shows Todolist
-todoadd - Adds to Todolist
+todolist - Shows the todolist
+todoadd - Adds an item to the todolist
+tododelete - Removes an item from the todolist
 clr - Clears chat by <int> lines
 k - K. use /k ? for more info
+giveip - Gets an IP of an URL
+broadcast - admin command

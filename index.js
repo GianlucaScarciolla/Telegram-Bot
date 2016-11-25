@@ -103,7 +103,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var list_id = parseInt(match[1]);
 		if(!isNaN(list_id)) {
 			var tg_id = msg.chat.id;
-			var sql = "SELECT value, id FROM todo INNER JOIN chat ON todo.chat_id=chat.id WHERE chat.tg_id=?";
+			var sql = "SELECT value, todo.id FROM todo INNER JOIN chat ON todo.chat_id=chat.id WHERE chat.tg_id=?";
 
 			connection.execute(sql, [tg_id], function (err, results, fields) {
 				for(var i = 0; i < results.length; i++) {
@@ -136,6 +136,22 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		});
 	});
 
+	/**
+	 * Broadcast
+	 */
+	 bot.onText(/\/broadcast (.+)/, function (msg, match) {
+ 		var tg_id = msg.chat.id;
+		var sql = "SELECT tg_id FROM chat";
+		if (tg_id == "173399457" || tg_id == "-1001041246978") {
+	 		connection.execute(sql, [tg_id], function (err, results, fields) {
+	 			for(var i = 0; i < results.length; i++) {
+					bot.sendMessage(results[i].tg_id, match[1]);
+	 			}
+	 		});
+		} else {
+			bot.sendMessage(tg_id, "This chat is not permitted to use broadcast.");
+		}
+ 	});
 
 
   /**
