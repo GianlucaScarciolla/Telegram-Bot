@@ -278,7 +278,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 				break;
       case "/k ?":
       case "/k help":
-        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip, gentoo, installgentoo, nignog, node, pleb, xd, moon, noom, notracist, notracistrip, notracistdeep</i>", {"parse_mode":"HTML"});
+        bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip, gentoo, installgentoo, nignog, node, pleb, xd, moon, noom, notracist, notracistrip, notracistdeep, bomb, btfo, normie, nothingwrong, rekt</i>", {"parse_mode":"HTML"});
         break;
       default:
         bot.sendMessage(chatId, "m8, only send a fuckin param if u kno shit '<i>/k help</i>'", {"parse_mode":"HTML"});
