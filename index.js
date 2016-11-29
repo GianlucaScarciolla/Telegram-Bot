@@ -261,6 +261,21 @@ jsonfile.readFile('auth.json', function(err, obj) {
 			case "/k notracistdeep":
 				bot.sendAudio(chatId, "audio-files/notracist-deep.mp3");
 				break;
+			case "/k bomb":
+				bot.sendAudio(chatId, "audio-files/bomb.mp3");
+				break;
+			case "/k btfo":
+				bot.sendAudio(chatId, "audio-files/btfo.mp3");
+				break;
+			case "/k normie":
+				bot.sendAudio(chatId, "audio-files/normie.mp3");
+				break;
+			case "/k nothingwrong":
+				bot.sendAudio(chatId, "audio-files/nothingwrong.mp3");
+				break;
+			case "/k rekt":
+				bot.sendAudio(chatId, "audio-files/rekt.mp3");
+				break;
       case "/k ?":
       case "/k help":
         bot.sendMessage(chatId, "Valid Params: <i>?, help, rip, deep, echo, wtf, jewtut, mc, mcrip, fuckoff, fuckoffrip, mate, materip, lel, lelrip, kek, kekrip, fgt, fgtrip, topkek, topkekrip, srsly, srslyrip, gentoo, installgentoo, nignog, node, pleb, xd, moon, noom, notracist, notracistrip, notracistdeep</i>", {"parse_mode":"HTML"});
