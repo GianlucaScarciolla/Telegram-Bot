@@ -62,7 +62,7 @@ jsonfile.readFile('auth.json', function(err, obj) {
 		var pdf_path = match[1];
 		var checktype = path.extname(pdf_path);
 		
- 	if (datat == '.pdf') {
+ 	if (checktype == '.pdf') {
 		//Extract all text from the pdf file 
 		pdfUtil.pdfToText(upload.path, function(err, data) {
 		  if (err) console.log(err);
