@@ -2,6 +2,8 @@ var TelegramBot = require('node-telegram-bot-api');
 var mysql = require('mysql2');
 var jsonfile = require('jsonfile');
 var dns = require('dns');
+var pdfUtil = require('pdf-to-text');
+var path = require('path')
 
 jsonfile.readFile('auth.json', function(err, obj) {
 	var token = obj.token;
@@ -50,6 +52,26 @@ jsonfile.readFile('auth.json', function(err, obj) {
 				bot.sendMessage(chatId, addresses[0]);
 			}
 		});
+	});
+
+	/**
+	 * PDF to TEXT //Luu
+	 */
+	bot.onText(/\/pdftotext (.+)/, function (msg, match) {
+		var chatId = msg.chat.id;
+		var pdf_path = match[1];
+		var checktype = path.extname(pdf_path);
+		
+ 	if (datat == '.pdf') {
+		//Extract all text from the pdf file 
+		pdfUtil.pdfToText(upload.path, function(err, data) {
+		  if (err) console.log(err);
+		  bot.sendMessage(chatId, data); //print all text     
+		});
+	} else {
+		bot.sendMessage(chatId, "m8, only send an URL with a PDF FAGGOT!!");
+	}
+
 	});
 
 	/**
