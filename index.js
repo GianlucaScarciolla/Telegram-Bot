@@ -2,6 +2,8 @@ var TelegramBot = require('node-telegram-bot-api');
 var mysql = require('mysql2');
 var jsonfile = require('jsonfile');
 var dns = require('dns');
+var pdfUtil = require('pdf-to-text');
+var path = require('path')
 
 jsonfile.readFile('auth.json', function(err, obj) {
 	var token = obj.token;
@@ -57,29 +59,19 @@ jsonfile.readFile('auth.json', function(err, obj) {
 	 */
 	bot.onText(/\/pdftotext (.+)/, function (msg, match) {
 		var chatId = msg.chat.id;
-		var url = match[1];
+		var pdf_path = match[1];
+		var checktype = path.extname(pdf_path);
 		
-		/**
-		var pdfUtil = require('pdf-to-text');
-		var pdf_path = "absolute_path/to/pdf_file.pdf";
- 
-		//option to extract text from page 0 to 10 
-		var option = {from: 0, to: 10};
- 
-		pdfUtil.pdfToText(upload.path, option, function(err, data) {
-		  if (err) throw(err);
-		  bot.sendMessage(chatId, data); //print text     
-		});
- 
-		//Omit option to extract all text from the pdf file 
+ 	if (datat == '.pdf') {
+		//Extract all text from the pdf file 
 		pdfUtil.pdfToText(upload.path, function(err, data) {
-		  if (err) throw(err);
-		  console.log(data); //print all text     
+		  if (err) console.log(err);
+		  bot.sendMessage(chatId, data); //print all text     
 		});
-		*/
-		
-		resp = "Coming soon! :D";
-		bot.sendMessage(chatId, resp);
+	} else {
+		bot.sendMessage(chatId, "m8, only send an URL with a PDF FAGGOT!!");
+	}
+
 	});
 
 	/**
